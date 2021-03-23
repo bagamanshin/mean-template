@@ -1,0 +1,4 @@
+﻿{
+    "connectionString": "mongodb+srv://ildar:123@cluster0.7ft9t.mongodb.net/authdb?retryWrites=true&w=majority",
+    "secret": "My secret string"
+}

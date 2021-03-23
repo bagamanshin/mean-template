@@ -1,0 +1,78 @@
+<p>Register page</p>
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div>
+    <div>
+      <input
+        type="text"
+        placeholder="Email"
+        formControlName="email"
+        [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}"
+      >
+    </div>
+    <p
+      style="color: red"
+      *ngIf="form.get('email').invalid && form.get('email').touched"
+    >
+      <span *ngIf="form.get('email').errors['required']">
+        Поле не должно быть пустым
+      </span>
+      <span *ngIf="form.get('email').errors['email']">
+        Введите корректный email адрес
+      </span>
+    </p>
+  </div>
+  <div>
+    <div>
+      <input
+        appTogglePassword
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+        [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
+      >
+    </div>
+    <p
+      style="color: red"
+      *ngIf="form.get('password').invalid && form.get('password').touched"
+    >
+      <span *ngIf="form.get('password').errors['required']">
+        Поле не должно быть пустым
+      </span>
+      <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+        Поле не должно быть короче {{form.get('password').errors['minlength']['requiredLength']}} символов
+      </span>
+    </p>
+  </div>
+  <div>
+    <input
+      appTogglePassword
+      type="password"
+      placeholder="Confirm password"
+      formControlName="confirm_password"
+      [ngClass]="{'invalid': form.get('confirm_password').invalid && form.get('confirm_password').touched}"
+    >
+    <p
+      style="color: red"
+      *ngIf="form.get('confirm_password').invalid && form.get('confirm_password').touched"
+    >
+      <span *ngIf="form.get('confirm_password').errors['required']">
+        Поле не должно быть пустым
+      </span>
+      <span *ngIf="form.get('confirm_password').errors['minlength'] && form.get('confirm_password').errors['minlength']['requiredLength']">
+        Поле не должно быть короче {{form.get('confirm_password').errors['minlength']['requiredLength']}} символов
+      </span>
+      <span *ngIf="form.get('confirm_password').errors['coincideValidator']">
+        Пароли не совпадают
+      </span>
+    </p>
+  </div>
+  <button
+    type="submit"
+    [disabled]="form.invalid || form.disabled"
+  >
+    Create
+  </button>
+</form>

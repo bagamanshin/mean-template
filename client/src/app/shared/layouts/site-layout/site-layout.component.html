@@ -1,0 +1,13 @@
+<nav>
+  <a routerLink="/" class="logo">SITE LOGO</a>
+  <ul>
+    <ng-template [ngIf]="!isLoggedIn" [ngIfElse]="loggedOut">
+      <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
+      <li routerLinkActive="active"><a routerLink="/registration">Register</a></li>
+    </ng-template>
+    <ng-template #loggedOut>
+      <li><a (click)="logout()" style="cursor: pointer; text-decoration: underline;">Logout</a></li>
+    </ng-template>
+  </ul>
+</nav>
+<router-outlet></router-outlet>

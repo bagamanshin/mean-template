@@ -1,0 +1,52 @@
+<p>Login page</p>
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div>
+    <input
+      type="text"
+      name="email"
+      placeholder="Email"
+      formControlName="email"
+      [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}"
+    >
+    <p
+      style="color: red"
+      *ngIf="form.get('email').invalid && form.get('email').touched"
+    >
+      <span *ngIf="form.get('email').errors['required']">
+        Email не должен быть пустым
+      </span>
+      <span *ngIf="form.get('email').errors['email']">
+        Введите корректный email адрес
+      </span>
+    </p>
+  </div>
+  <div>
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      formControlName="password"
+      [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
+    >
+    <p
+      style="color: red"
+      *ngIf="form.get('password').invalid && form.get('password').touched"
+    >
+      <span *ngIf="form.get('password').errors['required']">
+        Password не должен быть пустым
+      </span>
+      <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+        Password не должен быть короче {{form.get('password').errors['minlength']['requiredLength']}} символов
+      </span>
+    </p>
+  </div>
+  <button
+    type="submit"
+    [disabled]="form.invalid || form.disabled"
+  >
+    Login
+  </button>
+</form>
